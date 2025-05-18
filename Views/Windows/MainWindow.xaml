@@ -5,14 +5,278 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:PLSImageProcessing.ViewModels"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:PLSImageProcessing"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
     <Window.DataContext>
-        <vm:MainWindowVIewModel/>
+        <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
+    <Grid HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch"
+              Background="Transparent">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid IsEnabled="{Binding ContentEnabled, UpdateSourceTrigger=PropertyChanged}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Start"
+                        Command="{Binding ProcessImageCommand}"/>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="n=5" HorizontalAlignment="Center" Grid.Row="0"
+                           VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="orig" HorizontalAlignment="Center" Grid.Column="0"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=10" HorizontalAlignment="Center" Grid.Column="1"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=50" HorizontalAlignment="Center" Grid.Column="2"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=100" HorizontalAlignment="Center" Grid.Column="3"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=200" HorizontalAlignment="Center" Grid.Column="4"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding N5Result.OrigImagePhoto}" Grid.Column="0"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N5Result.D10ImagePhoto}" Grid.Column="1"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N5Result.D50ImagePhoto}" Grid.Column="2"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N5Result.D100ImagePhoto}" Grid.Column="3"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N5Result.D200ImagePhoto}" Grid.Column="4"
+                                   Stretch="Uniform"/>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding N5Result.OrigImageSketch}" Grid.Column="0"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N5Result.D10ImageSketch}" Grid.Column="1"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N5Result.D50ImageSketch}" Grid.Column="2"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N5Result.D100ImageSketch}" Grid.Column="3"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N5Result.D200ImageSketch}" Grid.Column="4"
+                                   Stretch="Uniform"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="n=100" HorizontalAlignment="Center" Grid.Row="0"
+                           VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="orig" HorizontalAlignment="Center" Grid.Column="0"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=10" HorizontalAlignment="Center" Grid.Column="1"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=50" HorizontalAlignment="Center" Grid.Column="2"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=100" HorizontalAlignment="Center" Grid.Column="3"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=200" HorizontalAlignment="Center" Grid.Column="4"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding N100Result.OrigImagePhoto}" Grid.Column="0"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N100Result.D10ImagePhoto}" Grid.Column="1"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N100Result.D50ImagePhoto}" Grid.Column="2"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N100Result.D100ImagePhoto}" Grid.Column="3"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N100Result.D200ImagePhoto}" Grid.Column="4"
+                                   Stretch="Uniform"/>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding N100Result.OrigImageSketch}" Grid.Column="0"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N100Result.D10ImageSketch}" Grid.Column="1"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N100Result.D50ImageSketch}" Grid.Column="2"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N100Result.D100ImageSketch}" Grid.Column="3"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N100Result.D200ImageSketch}" Grid.Column="4"
+                                   Stretch="Uniform"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="n=188" HorizontalAlignment="Center" Grid.Row="0"
+                           VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="orig" HorizontalAlignment="Center" Grid.Column="0"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=10" HorizontalAlignment="Center" Grid.Column="1"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=50" HorizontalAlignment="Center" Grid.Column="2"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=100" HorizontalAlignment="Center" Grid.Column="3"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                            <Label Content="d=200" HorizontalAlignment="Center" Grid.Column="4"
+                                   VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding N188Result.OrigImagePhoto}" Grid.Column="0"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N188Result.D10ImagePhoto}" Grid.Column="1"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N188Result.D50ImagePhoto}" Grid.Column="2"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N188Result.D100ImagePhoto}" Grid.Column="3"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N188Result.D200ImagePhoto}" Grid.Column="4"
+                                   Stretch="Uniform"/>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding N188Result.OrigImageSketch}" Grid.Column="0"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N188Result.D10ImageSketch}" Grid.Column="1"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N188Result.D50ImageSketch}" Grid.Column="2"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N188Result.D100ImageSketch}" Grid.Column="3"
+                                   Stretch="Uniform"/>
+                            <Image Source="{Binding N188Result.D200ImageSketch}" Grid.Column="4"
+                                   Stretch="Uniform"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
 
-    </Grid>    
+        <fa:ImageAwesome Visibility="{Binding LoadVisisbility, UpdateSourceTrigger=PropertyChanged}" 
+                 VerticalAlignment="Center" HorizontalAlignment="Center"
+                 Icon="Spinner" Foreground="Black" 
+                 Height="40">
+            <fa:ImageAwesome.Style>
+                <Style TargetType="{x:Type fa:ImageAwesome}">
+                    <Setter Property="RenderTransformOrigin" Value="0.5 0.5"/>
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <RotateTransform Angle="0"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                  From="0"
+                                  To="360"
+                                  Duration="0:0:1.7"
+                                  RepeatBehavior="Forever"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </fa:ImageAwesome.Style>
+        </fa:ImageAwesome>
+    </Grid>
 </Window>
