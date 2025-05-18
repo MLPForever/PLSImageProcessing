@@ -1,13 +1,7 @@
 ﻿using BaseTemplateForWPF;
-using OpenCvSharp;
 using PLSImageProcessing.Models;
-using System;
-using System.IO;
-using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using Size = OpenCvSharp.Size;
 
 namespace PLSImageProcessing.ViewModels
 {
