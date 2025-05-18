@@ -6,3 +6,5 @@
 Количества обучающих изображений
 
 Количества PLS-компонент (скрытых переменных)
+
+Датасет - https://www.kaggle.com/datasets/arbazkhan971/cuhk-face-sketch-database-cufs
